@@ -1,0 +1,14 @@
+/* index.css */
+
+@import url("https://rsms.me/inter/inter.css");
+
+*,
+html,
+body {
+  font-family: "Inter var";
+  /* outline: 1px solid red; */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
