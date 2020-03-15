@@ -1,7 +1,16 @@
-import React from "react";
+import React from 'react';
+
+// component
+import { Layout } from './components/shared';
 
 function App() {
-  return <div className="App">hello world</div>;
+  return (
+    <>
+      <Layout>
+        <h1>Hello world</h1>
+      </Layout>
+    </>
+  );
 }
 
 export default App;
