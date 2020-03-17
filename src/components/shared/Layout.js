@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Layout = ({ children }) => {
   return (
@@ -18,7 +19,7 @@ const Layout = ({ children }) => {
             </div>
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4">
-                <img className="h-8 w-auto" src="/img/logos/workflow-logo-on-white.svg" alt="Workflow" />
+                <img className="h-8 w-auto" src="http://ghanaembassy.it/images/ghanacrest.png" alt="Workflow" />
               </div>
               <nav className="mt-5 px-2">
                 <a
@@ -40,8 +41,9 @@ const Layout = ({ children }) => {
                   </svg>
                   Dashboard
                 </a>
-                <a
-                  href="#"
+                <NavLink
+                  to="/sec"
+                  exact={true}
                   className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
                 >
                   <svg
@@ -57,8 +59,8 @@ const Layout = ({ children }) => {
                       d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                  Team
-                </a>
+                  Teams
+                </NavLink>
                 <a
                   href="#"
                   className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
@@ -160,16 +162,20 @@ const Layout = ({ children }) => {
           <div className="flex-shrink-0 w-14">{/* Force sidebar to shrink to fit close icon */}</div>
         </div>
       </div>
+
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64 border-r border-gray-200 bg-white">
           <div className="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img className="h-8 w-auto" src="/img/logos/workflow-logo-on-white.svg" alt="Workflow" />
+              <img className="h-8 w-auto" src="http://ghanaembassy.it/images/ghanacrest.png" alt="Workflow" />
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white">
-              <a
-                href="#"
-                className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+              <NavLink
+                to="/"
+                exact={true}
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 ${/*focus:outline-none focus:bg-gray-200*/" "} transition ease-in-out duration-150`}
+                activeClassName="outline-none bg-gray-200"
+
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -185,10 +191,12 @@ const Layout = ({ children }) => {
                   />
                 </svg>
                 Dashboard
-              </a>
-              <a
-                href="#"
-                className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+              </NavLink>
+              <NavLink
+                to="/sec"
+                exact={true}
+                className={`mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 ${/*focus:outline-none focus:bg-gray-100*/ " "} transition ease-in-out duration-150`}
+                activeClassName="outline-none bg-gray-200"
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -203,8 +211,8 @@ const Layout = ({ children }) => {
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                Team
-              </a>
+                Teams
+              </NavLink>
               <a
                 href="#"
                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
@@ -312,7 +320,7 @@ const Layout = ({ children }) => {
             </svg>
           </button>
         </div>
-        <main className="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabIndex={0}>
+        <main className="flex-1 relative z-0 bg-gray-100 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabIndex={0}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">{children}</div>
         </main>
       </div>
