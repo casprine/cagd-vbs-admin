@@ -187,8 +187,8 @@ const Layout = ({ children }) => {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64 border-r border-gray-200 bg-white">
           <div className="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4">
-              <img className="h-8 w-auto" src="/img/logos/workflow-logo-on-white.svg" alt="Workflow" />
+            <div className="flex items-center flex-shrink-0 px-4" style={{display:'flex',justifyContent:'center'}}>
+              <img className="h-20 w-auto" src={require('../../assets/coa.png')} alt="Cadg" />
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white">
               <a
