@@ -48,7 +48,7 @@ const LoginComponent = props => {
           <div>
             <img className="mx-auto h-20 w-auto" src={require('../../../assets/coa.png')} alt="cadg" />
             <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-              Sign in to your account
+              CAGD - Value Book System
             </h2>
           </div>
           <form className="mt-8" onSubmit={handleLogin}>
