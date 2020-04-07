@@ -15,3 +15,16 @@ export const getMDAS = gql`
     }
   }
 `;
+
+export const productForMDA = gql`
+  query mdas($id: MongoID!) {
+    products(mdaID: $id) {
+      type
+      name
+      shortCode
+      unitPrice
+      bundleSize
+      minOrderCount
+    }
+  }
+`;

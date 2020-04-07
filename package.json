@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch:tailwind": "postcss src/tailwind.css -o src/index.css -w",
-    "build:tailwind": "NODE_ENV=production postcss src/tailwind.css -o src/index.css"
+    "build:tailwind": "NODE_ENV=production postcss ./src/tailwind.css -o ./src/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"

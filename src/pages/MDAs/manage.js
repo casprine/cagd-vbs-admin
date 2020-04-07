@@ -16,7 +16,7 @@ const ManageMDAs = props => {
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-3">
         <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
           <div className="ml-4 mt-2">
-            <h3 className="text-lg leading-6 font-medium text-gray-900" style={{ fontFamily: 'Gotham' }}>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
               Manage MDAs
             </h3>
           </div>
@@ -126,31 +126,16 @@ const ManageMDAs = props => {
                               </div>
                               <div className="text-sm leading-5 text-gray-500 ml-0.5">
                                 <Link
-                                  to={`/manage/mdas/product/${mda.id}`}
+                                  to={{
+                                    pathname:`/manage/mdas/product/${mda.id}`,
+                                    state:{name:mda.name}
+                                  }}
                                   className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs hover:bg-indigo-50 leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
                                 >
                                   <Icon icon="eye-open" color="primary" marginRight={16} />
                                   View
                                 </Link>
                               </div>
-
-                              {/*<IconButton*/}
-                              {/*  appearance="minimal"*/}
-                              {/*  className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"*/}
-                              {/*  intent={'primary'}*/}
-                              {/*  icon="confirm"*/}
-                              {/*  iconSize={18}*/}
-                              {/*/>*/}
-                              {/*<Link to={`/manage/mdas/product/${mda.id}`}>*/}
-                              {/*  <IconButton*/}
-                              {/*    title={'Products'}*/}
-                              {/*    appearance="minimal"*/}
-                              {/*    className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"*/}
-                              {/*    intent={'primary'}*/}
-                              {/*    icon="eye-open"*/}
-                              {/*    iconSize={18}*/}
-                              {/*  />*/}
-                              {/*</Link>*/}
                             </div>
                           </td>
                         </tr>
