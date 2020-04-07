@@ -47,7 +47,11 @@ const Layout = ({ children }) => {
               <nav className="mt-5 px-2">
                 <Link
                   to={'/'}
-                  className={`group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900 ${pathname !== '/' ? 'rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150' : ''}   `}
+                  className={`group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900 ${
+                    pathname !== '/'
+                      ? 'rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150'
+                      : ''
+                  }   `}
                 >
                   <svg
                     className="mr-4 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -168,7 +172,7 @@ const Layout = ({ children }) => {
                     <img
                       className="inline-block h-10 w-10 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt={"image"}
+                      alt={'image'}
                     />
                   </div>
                   <div className="ml-3">
@@ -187,13 +191,15 @@ const Layout = ({ children }) => {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64 border-r border-gray-200 bg-white">
           <div className="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4" style={{display:'flex',justifyContent:'center'}}>
+            <div className="flex items-center flex-shrink-0 px-4" style={{ display: 'flex', justifyContent: 'center' }}>
               <img className="h-20 w-auto" src={require('../../assets/coa.png')} alt="Cadg" />
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white">
               <Link
                 to={'/'}
-                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${pathname == '/' ? 'rounded-md bg-gray-100' : ''}  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${
+                  pathname == '/' ? 'rounded-md bg-gray-100' : ''
+                }  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -212,7 +218,9 @@ const Layout = ({ children }) => {
               </Link>
               <Link
                 to={'/manage/mdas'}
-                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${pathname == '/manage/mdas' ? 'rounded-md bg-gray-100' : ''}  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${
+                  pathname == '/manage/mdas' ? 'rounded-md bg-gray-100' : ''
+                }  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -225,15 +233,16 @@ const Layout = ({ children }) => {
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-
                   />
                 </svg>
                 Manage MDAs
               </Link>
 
-              <a
-                href="#"
-                className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+              <Link
+                to="/manage/products"
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${
+                  pathname == '/manage/products' ? 'rounded-md bg-gray-100' : ''
+                }  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -248,8 +257,8 @@ const Layout = ({ children }) => {
                     d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                   />
                 </svg>
-                Projects
-              </a>
+                Manage Products
+              </Link>
               <a
                 href="#"
                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
@@ -316,7 +325,7 @@ const Layout = ({ children }) => {
                   <img
                     className="inline-block h-9 w-9 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt={"image"}
+                    alt={'image'}
                   />
                 </div>
                 <div className="ml-3">

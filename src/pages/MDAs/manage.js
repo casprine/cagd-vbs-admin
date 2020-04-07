@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { Spinner } from 'evergreen-ui';
+import { IconButton, Icon } from 'evergreen-ui';
 import { getMDAS as GET_MDAS } from '../../graphql/queries';
 
 const ManageMDAs = props => {
@@ -54,9 +55,6 @@ const ManageMDAs = props => {
                         Prefix
                       </th>
                       <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Address
-                      </th>
-                      <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Status
                       </th>
                       <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -67,34 +65,36 @@ const ManageMDAs = props => {
                   <tbody className="bg-white">
                     {data.MDAs.map((mda, i) => (
                       <Fragment key={i}>
-                        <tr className={`${i%2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+                        <tr className={`${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <div className="flex items-center">
                               <div className="ml-4">
                                 <div className="text-sm leading-5 font-medium text-gray-900">
-                                  {/*{mda.name*/}
-                                  {/*  ? mda.name.split('').length > 30*/}
-                                  {/*    ? `${mda.name.slice(0, 30)}...`*/}
-                                  {/*    : mda.name*/}
-                                  {/*  : 'N/A'}*/}
                                   {mda.name ? mda.name : mda.name}
                                 </div>
-                                <div className="text-sm leading-5 text-gray-500">{mda.email ? mda.email : 'N/A'}</div>
+                                <div className="text-sm leading-5 text-gray-500">
+                                  {mda.address ? mda.address : 'N/A'}
+                                </div>
                               </div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div className="text-sm leading-5 text-gray-900">{mda.phone ? mda.phone : 'N/A'}</div>
+                            <div className="text-sm leading-5 font-medium text-gray-900">
+                              {mda.email ? mda.email : mda.email}
+                            </div>
+                            <div className="text-sm leading-5 text-gray-500">{mda.phone ? mda.phone : 'N/A'}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                             {mda.prefix ? mda.prefix : 'N/A'}
                           </td>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                            {mda.address ? mda.address : 'N/A'}
-                          </td>
+
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             {mda.status ? (
-                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              <span
+                                className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-${
+                                  mda.status === 'active' ? 'green' : 'red'
+                                }-100 text-${mda.status === 'active' ? 'green' : 'red'}-800`}
+                              >
                                 {mda.status}
                               </span>
                             ) : (
@@ -102,12 +102,54 @@ const ManageMDAs = props => {
                             )}
                           </td>
                           <td className="px-6 py-4 whitespace-no-wrap text-left border-b border-gray-200 text-sm leading-5 font-medium">
-                            <a
-                              href="#"
-                              className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"
-                            >
-                              Activate
-                            </a>
+                            <div className={'flex flex-row items-center'}>
+                              <div className="text-sm leading-5 font-medium text-gray-900">
+                                {mda.status === 'deactivate' ? (
+                                  <button
+                                    type="button"
+                                    className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs hover:bg-indigo-50 leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                  >
+                                    <Icon icon="cross" color="danger" marginRight={16} />
+                                    Deactivate
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs hover:bg-indigo-50 leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                  >
+                                    <Icon icon="confirm" color="primary" marginRight={16} />
+                                    Activate
+                                  </button>
+                                )}
+                              </div>
+                              <div className="text-sm leading-5 text-gray-500 ml-0.5">
+                                <Link
+                                  to={`/manage/mdas/product/${mda.id}`}
+                                  className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs hover:bg-indigo-50 leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                >
+                                  <Icon icon="eye-open" color="primary" marginRight={16} />
+                                  View
+                                </Link>
+                              </div>
+
+                              {/*<IconButton*/}
+                              {/*  appearance="minimal"*/}
+                              {/*  className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"*/}
+                              {/*  intent={'primary'}*/}
+                              {/*  icon="confirm"*/}
+                              {/*  iconSize={18}*/}
+                              {/*/>*/}
+                              {/*<Link to={`/manage/mdas/product/${mda.id}`}>*/}
+                              {/*  <IconButton*/}
+                              {/*    title={'Products'}*/}
+                              {/*    appearance="minimal"*/}
+                              {/*    className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"*/}
+                              {/*    intent={'primary'}*/}
+                              {/*    icon="eye-open"*/}
+                              {/*    iconSize={18}*/}
+                              {/*  />*/}
+                              {/*</Link>*/}
+                            </div>
                           </td>
                         </tr>
                       </Fragment>
