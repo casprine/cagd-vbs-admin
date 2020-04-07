@@ -67,7 +67,7 @@ const ManageMDAs = props => {
                   <tbody className="bg-white">
                     {data.MDAs.map((mda, i) => (
                       <Fragment key={i}>
-                        <tr>
+                        <tr className={`${i%2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <div className="flex items-center">
                               <div className="ml-4">
