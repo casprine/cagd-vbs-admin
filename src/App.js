@@ -4,6 +4,7 @@ import { Spinner } from 'evergreen-ui';
 // component
 import { Layout } from './components/shared';
 import LoginComponent from './pages/auth/login';
+import ClientAppollo from './graphql/client';
 
 function loading() {
   return (
@@ -26,14 +27,16 @@ function loading() {
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Suspense fallback={loading()}>
-          <Switch>
-            <Route path={'/login'} render={props => <LoginComponent {...props} />} name={'Login'} exact />
-            <Route path={'/'} render={props => <Layout {...props} name={'Dashboard'} />} />
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
+      <ClientAppollo>
+        <BrowserRouter>
+          <Suspense fallback={loading()}>
+            <Switch>
+              <Route path={'/login'} render={props => <LoginComponent {...props} />} name={'Login'} exact />
+              <Route path={'/'} render={props => <Layout {...props} name={'Dashboard'} />} />
+            </Switch>
+          </Suspense>
+        </BrowserRouter>
+      </ClientAppollo>
     </>
   );
 }

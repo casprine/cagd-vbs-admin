@@ -168,7 +168,7 @@ const Layout = ({ children }) => {
                     <img
                       className="inline-block h-10 w-10 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt
+                      alt={"image"}
                     />
                   </div>
                   <div className="ml-3">
@@ -191,8 +191,8 @@ const Layout = ({ children }) => {
               <img className="h-20 w-auto" src={require('../../assets/coa.png')} alt="Cadg" />
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white">
-              <a
-                href="#"
+              <Link
+                to={'/'}
                 className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${pathname == '/' ? 'rounded-md bg-gray-100' : ''}  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
@@ -209,13 +209,13 @@ const Layout = ({ children }) => {
                   />
                 </svg>
                 Dashboard
-              </a>
-              <a
-                href="#"
-                className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+              </Link>
+              <Link
+                to={'/manage/mdas'}
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${pathname == '/manage/mdas' ? 'rounded-md bg-gray-100' : ''}  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
-                  className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                  className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -225,10 +225,12 @@ const Layout = ({ children }) => {
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+
                   />
                 </svg>
-                Team
-              </a>
+                Manage MDAs
+              </Link>
+
               <a
                 href="#"
                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
@@ -314,7 +316,7 @@ const Layout = ({ children }) => {
                   <img
                     className="inline-block h-9 w-9 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt
+                    alt={"image"}
                   />
                 </div>
                 <div className="ml-3">
