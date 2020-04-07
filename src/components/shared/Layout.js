@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { Fragment, useState, Suspense } from 'react';
+import { useLocation, Link, Switch, useHistory } from 'react-router-dom';
+import routes from '../../routes';
+import PrivateRoute from '../privateRoute';
+import { Spinner } from 'evergreen-ui';
+
+const loading = props => {
+  return (
+    <Fragment>
+      <div
+        style={{
+          height: '100vh',
+          width: '70vw',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Spinner />
+      </div>
+    </Fragment>
+  );
+};
 
 const Layout = ({ children }) => {
+  const { pathname } = useLocation();
+
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
       <div className="md:hidden">
@@ -18,12 +42,12 @@ const Layout = ({ children }) => {
             </div>
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4">
-                <img className="h-8 w-auto" src="/img/logos/workflow-logo-on-white.svg" alt="Workflow" />
+                <img className="h-8 w-auto" src={require('../../assets/coa.png')} alt="cadg" />
               </div>
               <nav className="mt-5 px-2">
-                <a
-                  href="#"
-                  className="group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900 rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+                <Link
+                  to={'/'}
+                  className={`group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900 ${pathname !== '/' ? 'rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150' : ''}   `}
                 >
                   <svg
                     className="mr-4 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -39,7 +63,7 @@ const Layout = ({ children }) => {
                     />
                   </svg>
                   Dashboard
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
@@ -169,7 +193,7 @@ const Layout = ({ children }) => {
             <nav className="mt-5 flex-1 px-2 bg-white">
               <a
                 href="#"
-                className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+                className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 ${pathname == '/' ? 'rounded-md bg-gray-100' : ''}  hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
               >
                 <svg
                   className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -313,7 +337,21 @@ const Layout = ({ children }) => {
           </button>
         </div>
         <main className="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabIndex={0}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">{children}</div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <Suspense fallback={loading()}>
+              <Switch>
+                {routes.map((screen, i) => (
+                  <PrivateRoute
+                    name={screen.name}
+                    key={i}
+                    component={screen.component}
+                    exact={screen.exact}
+                    path={screen.path}
+                  />
+                ))}
+              </Switch>
+            </Suspense>
+          </div>
         </main>
       </div>
     </div>
