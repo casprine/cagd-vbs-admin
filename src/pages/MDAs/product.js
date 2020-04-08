@@ -1,11 +1,14 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { productForMDA as PRODUCT_MDA } from '../../graphql/queries';
+import { Dialog, Button } from 'evergreen-ui';
 
 const MDAProduct = props => {
   const { location, push } = useHistory();
   const { id } = useParams();
+  const [productData, setData] = useState(null);
+  const [isShown, setIsShown] = useState(false);
 
   const { loading, data } = useQuery(PRODUCT_MDA, {
     variables: {
@@ -22,7 +25,7 @@ const MDAProduct = props => {
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-3">
         <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
           <div className="ml-4 mt-2">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">{ location.state?.name}</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">{location.state?.name}</h3>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
             <span className="inline-flex rounded-md shadow-sm">
@@ -99,12 +102,16 @@ const MDAProduct = props => {
                           {product.minOrderCount ? product.minOrderCount : 'N/A'}
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium">
-                          <a
-                            href="#"
-                            className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"
+                          <Button
+                            onClick={() => {
+                              setData(product);
+                              setIsShown(!isShown);
+                            }}
+                            appearance="minimal"
+                            intent="primary"
                           >
                             Edit
-                          </a>
+                          </Button>
                         </td>
                       </tr>
                     ))}
@@ -121,6 +128,49 @@ const MDAProduct = props => {
           No Data here
         </div>
       )}
+
+      <Dialog
+        isShown={isShown}
+        title={productData?.name}
+        onCloseComplete={() => setIsShown(!isShown)}
+        confirmLabel="Custom Label"
+        hasFooter={false}
+        hasHeader={false}
+        width={700}
+      >
+        <div className="bg-white overflow-hidden  sm:rounded-lg">
+          <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">{productData?.name}</h3>
+            <p className="mt-1 max-w-2xl text-sm leading-5 text-gray-500">{location.state.name}</p>
+          </div>
+          <div className="px-4 py-5 sm:px-6">
+            <dl className="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
+              <div className="sm:col-span-1">
+                <dt className="text-sm leading-5 font-medium text-gray-500">Product Type</dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.type || 'N/A'}</dd>
+              </div>
+              <div className="sm:col-span-1">
+                <dt className="text-sm leading-5 font-medium text-gray-500">Short Code</dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.shortCode || 'N/A'}</dd>
+              </div>
+              <div className="sm:col-span-1">
+                <dt className="text-sm leading-5 font-medium text-gray-500">Unit Price</dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.unitPrice || 'N/A'}</dd>
+              </div>
+              <div className="sm:col-span-1">
+                <dt className="text-sm leading-5 font-medium text-gray-500">Bundle Size</dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.bundleSize || 'N/A'}</dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="text-sm leading-5 font-medium text-gray-500">Minimum Order Count</dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">
+                  {productData?.minOrderCount || 'N/A'}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 };
