@@ -147,27 +147,58 @@ const MDAProduct = props => {
             <dl className="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
               <div className="sm:col-span-1">
                 <dt className="text-sm leading-5 font-medium text-gray-500">Product Type</dt>
-                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.type || 'N/A'}</dd>
+                <input
+                  id="email"
+                  value={productData?.type}
+                  className="form-input block w-full sm:text-sm sm:leading-5"
+                  placeholder="Type"
+                />
               </div>
               <div className="sm:col-span-1">
                 <dt className="text-sm leading-5 font-medium text-gray-500">Short Code</dt>
-                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.shortCode || 'N/A'}</dd>
+                <input
+                  id="email"
+                  value={productData?.shortCode}
+                  className="form-input block w-full sm:text-sm sm:leading-5"
+                  placeholder="Short Code"
+                />
               </div>
               <div className="sm:col-span-1">
                 <dt className="text-sm leading-5 font-medium text-gray-500">Unit Price</dt>
-                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.unitPrice || 'N/A'}</dd>
+                <input
+                  id="email"
+                  value={productData?.unitPrice}
+                  className="form-input block w-full sm:text-sm sm:leading-5"
+                  placeholder="Unit Price"
+                />
               </div>
               <div className="sm:col-span-1">
                 <dt className="text-sm leading-5 font-medium text-gray-500">Bundle Size</dt>
-                <dd className="mt-1 text-sm leading-5 text-gray-900">{productData?.bundleSize || 'N/A'}</dd>
+                <input
+                  id="email"
+                  value={productData?.bundleSize}
+                  className="form-input block w-full sm:text-sm sm:leading-5"
+                  placeholder="Bundle Size"
+                />
               </div>
               <div className="sm:col-span-2">
                 <dt className="text-sm leading-5 font-medium text-gray-500">Minimum Order Count</dt>
-                <dd className="mt-1 text-sm leading-5 text-gray-900">
-                  {productData?.minOrderCount || 'N/A'}
-                </dd>
+                <input
+                  id="email"
+                  value={productData?.minOrderCount}
+                  className="form-input block w-full sm:text-sm sm:leading-5"
+                  placeholder="Minimum Order Count"
+                />
               </div>
             </dl>
+            <span className="inline-flex rounded-md shadow-sm mt-3 right-1">
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+              >
+                Update
+              </button>
+            </span>
           </div>
         </div>
       </Dialog>
